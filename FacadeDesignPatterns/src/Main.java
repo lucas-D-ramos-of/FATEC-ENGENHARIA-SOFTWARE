@@ -18,22 +18,27 @@ public class Main {
 
         boolean continuar = true;
         ComboFacade facade = new ComboFacade();
+        int escolha;
 
         while (continuar) {
             System.out.print("\nSua escolha: ");
-            int escolha = scanner.nextInt();
+             escolha= scanner.nextInt();
 
-            if (escolha == 0) {
-                System.out.println("Obrigado pela preferência!");
-                continuar = false;
-            } else if (escolha >= 1 && escolha <= 3) {
-                facade.criarCombo(escolha);
-                facade.exibirItens();
-                System.out.printf("\n💰 Total a pagar: R$ %.2f\n",
-                        facade.getPrecoTotal());
-            } else {
-                System.out.println("❌ Opção inválida!");
-            }
+             switch (escolha){
+                 case 0 -> {
+                     System.out.println("Obrigado pela preferência!");
+                     continuar = false;
+                 }
+                 case 1,2,3 -> {
+                     facade.criarCombo(escolha);
+                     facade.exibirItens();
+                     System.out.printf("\n💰 Total a pagar: R$ %.2f\n",
+                             facade.getPrecoTotal());
+                 }
+                 default -> {
+                     System.out.println("❌ Opção inválida!");
+                 }
+             }
         }
 
         scanner.close();
